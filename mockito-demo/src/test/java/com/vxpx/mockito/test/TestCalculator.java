@@ -2,6 +2,7 @@ package com.vxpx.mockito.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -41,7 +42,7 @@ public class TestCalculator {
 	}
 	
 	@Test
-	public void testAddNumbers() {
+	public void testAdd() {
 		
 		when(service.addNumbers(3, 5)).thenReturn(8);
 		
@@ -54,6 +55,14 @@ public class TestCalculator {
 		verify(service,atLeastOnce()).addNumbers(3, 5);
 		
 		verify(service, never()).subractNumbers(3, 5);
+	}
+	
+	@Test
+	public void testDivide() {
+		
+		doThrow(new RuntimeException("DivdeByZero not allowed")).when(service).divideNumbers(2, 0);
+		
+		assertEquals(calculator.divideInteger(2, 0),2);
 	}
 
 }

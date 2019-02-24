@@ -10,4 +10,8 @@ public class Calculator {
 		return service.addNumbers(a, b);
 	}
 	
+	public int divideInteger(int a, int b) {
+		return service.divideNumbers(a, b);
+	}
+	
 }
